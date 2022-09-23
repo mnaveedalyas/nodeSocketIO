@@ -4,14 +4,20 @@ const socket = io('ws://127.0.0.1:3000');
 
 console.log("connection to server ");
 
-socket.on("hello", (arg) => {
+
+socket.on("Topic1", (arg) => {
     console.log("Message from Server - hello : "+arg);
 })
+
+
+socket.emit("howdy", " I am a Client");
+
+
 
 socket.on("number", (arg) => {
     console.log("Message from Server - number : "+arg);
 })
 
-socket.emit("howdy", " I am a Client");
+
 
 //console.log("connection closed ");

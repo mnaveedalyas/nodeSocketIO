@@ -1,24 +1,4 @@
 
-/*
-let io = require('socket.io')(http);
-
-io.on('connection', (socket) => {
-  console.log('a user connected');
-  socket.on('disconnect', () => {
-    console.log('user disconnected');
-  });
-  setInterval(()=>{
-    socket.emit('number', parseInt(Math.random()*10));
-  }, 1000);
-
-});
-*/
-
-//import { Server } from "socket.io";
-
-//const Server = require("socket.io");
-
-//const io = new Server(3000);
 let port = 3000;
 let io = require('socket.io')(port);
 
@@ -26,7 +6,7 @@ console.log("opening a stocket ");
 
 io.on("connection", (socket) => {
     //send a message to client
-    socket.emit("hello", "world");
+    socket.emit("Topic1", "Weather Information");
 
     //receive a message from client
     socket.on("howdy", (arg) => {
@@ -37,8 +17,13 @@ io.on("connection", (socket) => {
         let anum = parseInt(Math.random()*10);
         console.log("A number sent to client : "+anum)
         socket.emit('number', anum);
-      }, 2000);
+      }, 4000);
     
+      setInterval(()=>{
+        let anum = parseInt(Math.random()*10);
+        console.log("A 2ndnumber sent to client : "+anum)
+        socket.emit('2ndnumber', anum);
+      }, 6000);
 
 });
 
