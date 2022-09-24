@@ -1,6 +1,20 @@
+//const server = require('http').createServer();
+//const io = require('socket.io')(server);
 
-let port = 3000;
-let io = require('socket.io')(port);
+const app = require('express')();
+const server = require('http').createServer(app);
+const io = require('socket.io')(server);
+
+
+//let port = 3000;
+const bodyParser = require('body-parser');
+app.use(bodyParser.json());
+
+
+app.get('/', (req, res) => {
+    res.send("<h1>App is running </h1>");
+})
+
 
 console.log("opening a stocket ");
 
@@ -26,5 +40,6 @@ io.on("connection", (socket) => {
       }, 6000);
 
 });
+server.listen(3000);
 
 //console.log("connection closed ");
