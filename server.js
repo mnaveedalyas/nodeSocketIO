@@ -8,23 +8,23 @@ console.log("opening a stocket : 3000 ");
 
 io.on("connection", (socket) => {
     //send a message to client
-    socket.emit("Topic1", "Weather Information");
+    socket.emit("WeatherTopic", "WeatherTopic: Weather Information");
 
     //receive a message from client
-    socket.on("howdy", (arg) => {
-        console.log('Message received from client  - howdy : '+ arg);
+    socket.on("ClientTopic", (arg) => {
+        console.log('Message received from client  - ClientTopic : '+ arg);
     });
 
     setInterval(()=>{
         let anum = parseInt(Math.random()*10);
-        console.log("A number sent to client : "+anum)
-        socket.emit('number', anum);
+        console.log("ServerTopic1: A number is sent to client : "+anum)
+        socket.emit('ServerTopic1', anum);
       }, 4000);
     
       setInterval(()=>{
         let anum = parseInt(Math.random()*10);
-        console.log("A 2ndnumber sent to client : "+anum)
-        socket.emit('2ndnumber', anum);
+        console.log("ServerTopic2: A number is sent to client : "+anum)
+        socket.emit('ServerTopic2', anum);
       }, 6000);
 
 });
